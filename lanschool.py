@@ -1,6 +1,6 @@
 # python 3.6.8(32-bit) pywinauto 0.5.4 Windows
 # oj13@foxmail.com
-# automation for testing Lanschool Teacher Console
+# automation for testing Lanschool Teacher Console 8.0.1.54
 
 from pywinauto.application import Application
 from pywinauto import taskbar, findwindows
