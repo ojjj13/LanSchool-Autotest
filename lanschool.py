@@ -4,6 +4,7 @@
 
 from pywinauto.application import Application
 from pywinauto import taskbar, findwindows
+import time
 from time import sleep
 
 # start the program
@@ -11,23 +12,11 @@ from time import sleep
 
 # or, connect to existing program
 app = Application().connect(title='LanSchool Teacher Console')
-
-# invoke from systray(taskbar)
-# print (taskbar.RunningApplications.Texts())
-# taskbar.ClickSystemTrayIcon("LanSchool Teacher Console")
-# systrayicons.ClickSystemTrayIcon("CDL")
-# systrayicons.Button('test').ClickInput()
-
 lskmainteacherwindowclass = app[u'LanSchool Teacher Console']
+
 # lskmainteacherwindowclass.Restore()
-lskmainteacherwindowclass.SetFocus()
-lskmainteacherwindowclass.Maximize()
-
-# Close any dialog
-
-# if app.dialog:
-# 	app.dialog.Close()
-# 	sleep(1)
+# lskmainteacherwindowclass.SetFocus()
+# lskmainteacherwindowclass.Maximize()
 
 # ______________________________________________________________________
 
@@ -96,9 +85,8 @@ sleep(2)
 print("pass!\n")
 
 # Toolbar - Show Student (First in the list)
-# select first client
 print("show students..")
-lskmainteacherwindowclass.ClickInput(coords=(160,335))
+lskmainteacherwindowclass.ClickInput(coords=(160,335)) # select first client
 toolbar_button = toolbarwindow.Button(u'Show Student')
 toolbar_button.ClickInput()
 sleep(3)
@@ -111,31 +99,109 @@ print("Vote..")
 toolbar_button = toolbarwindow.Button(5)
 toolbar_button.ClickInput()
 app.Dialog.Edit.TypeKeys('"Random question"', with_spaces = True)
-sleep(2)
-app.Dialog.Button6.ClickInput()
 sleep(1)
+app.Dialog.Button2.ClickInput() # Save..
+sleep(1)
+app.Dialog.Edit.TypeKeys("vote " + str(time.time()))
+sleep(1)
+app.Dialog.Save.ClickInput()
+sleep(1)
+app.Dialog.Edit.SetText("")
+app.Dialog.Button0.ClickInput() # Load..
+sleep(1)
+app.Dialog.Edit.TypeKeys("question.lsq")
+app.Dialog.Open.ClickInput()
+sleep(1)
+app.Dialog.Button4.ClickInput() # Send
+sleep(3)
+app.Dialog.Button5.ClickInput() # Details..
+sleep(1)
+app.Dialog.Close() # not finish yet
+sleep(1)
+app.Dialog.Close()
+
 print("pass!\n")
 
-# Toolbar - Testing
+# Toolbar - Test Create
 print("testing..")
-toolbar_button = toolbarwindow.Button(6)
-toolbar_button.ClickInput()
-# print(findwindows.find_windows(best_match="PopupMenu"))
-# sleep(1)
-# app.PopupMenu.MenuItem("Ask Students to Take Test...").ClickInput()
+lskmainteacherwindowclass.ClickInput(coords=(160,335)) # unselect first client
+toolbarwindow.Button(6).ClickInput() # open test
 sleep(1)
+app.PopupMenu.MenuItem("Create Test...").ClickInput()
+sleep(1)
+app = Application().Connect(title='LanSchool Test Builder')
+testbuilder = app[u'LanSchool Test Builder']
+testbuilder.Toolbar.Button(1).ClickInput()
+sleep(1)
+app.Dialog.Edit.TypeKeys("test.lst")
+app.Dialog.Open.ClickInput()
+
+testbuilder.Toolbar.Button(9).ClickInput() # edit button
+sleep(1)
+app.Dialog.Button.ClickInput() # browse..
+sleep(1)
+app.Dialog.Edit.TypeKeys("sample.jpg")
+app.Dialog.Open.ClickInput()
+sleep(1)
+app.Dialog.Save.ClickInput()
+sleep(1)
+
+testbuilder.MenuItem(u'&File->Save Test As...').ClickInput() # save test
+sleep(1)
+app.Dialog.edit.TypeKeys("test " + str(time.time())) # TODO
+app.Dialog.Save.ClickInput()
+sleep(1)
+app.Dialog.OK.ClickInput()
+
+testbuilder.Toolbar.Button(9).ClickInput() # edit delete image
+sleep(1)
+app.Dialog.Edit10.SetText("") 
+sleep(1)
+app.Dialog.Save.ClickInput()
+sleep(1)
+
+testbuilder.Toolbar.Button(10).ClickInput() # delete test
+sleep(1)
+app.Dialog.Yes.ClickInput()
+sleep(1)
+
+testbuilder.Toolbar.Button(0).ClickInput() # new test
+sleep(1)
+app.Dialog.Button2.ClickInput()
+sleep(1)
+app.Dialog.Edit.TypeKeys("Random Question", with_spaces=True)
+sleep(1)
+app.Dialog.RadioButton2.ClickInput()
+app.Dialog.CheckBox1.ClickInput()
+app.Dialog.CheckBox2.ClickInput()
+app.Dialog.CheckBox3.ClickInput()
+sleep(1)
+app.Dialog.Save.ClickInput()
+
+testbuilder.Close()
+sleep(1)
+lskmainteacherwindowclass.ClickInput(coords=(160,335)) # select first client
+
+print(findwindows.find_windows(best_match="PopupMenu"))
+sleep(1)
+app.PopupMenu.MenuItem("Ask Students to Take Test...").ClickInput()
+
+sleep(1)
+print(app.Dialog.Texts())
 app.Dialog.Load.ClickInput()
 sleep(1)
 app.Dialog.Edit.TypeKeys("Computers.lst", with_spaces = True)
 sleep(1)
+print(app.Dialog.Texts())
 app.Dialog.Open.ClickInput()
 sleep(1)
 app.Dialog.Start.ClickInput()
 sleep(1)
 app.Dialog.Sotp.ClickInput()
 sleep(1)
-app.Dialog.ClickInput(coords=(1313, -20))
+app.Dialog.ClickInput(coords=(1313, -20)) # no idea how to click that button in other way
 sleep(1)
+
 print("pass!\n")
 
 # Toolbar - Run
@@ -152,7 +218,7 @@ print("control..")
 toolbar_button = toolbarwindow.Button(u'Control')
 toolbar_button.ClickInput()
 sleep(1)
-lskmainteacherwindowclass.RightClickInput(coords=(765,962))
+lskmainteacherwindowclass.RightClickInput(coords=(765,962)) # creat a folder on mac 
 sleep(1)
 lskmainteacherwindowclass.ClickInput(coords=(785,972))
 sleep(1)
@@ -206,12 +272,50 @@ sleep(0.5)
 print("pass!\n")
 
 # Toolbar - Limit Web
-print("limit web..")
-toolbar_button = toolbarwindow.Button(18)
-toolbar_button.Click()
-sleep(0.5)
-toolbar_button.Click()
-sleep(0.5)
+print("Limit Web - Save/Load Allowed List")
+
+menu_item = lskmainteacherwindowclass.MenuItem(u'&Restrict->Configure Web Limiting...')
+menu_item.ClickInput()
+sleep(1)
+
+window = app.Dialog
+edit = window.Edit.SetText("")
+edit = window.Edit.TypeKeys("google.com\nbaidu.com", with_newlines=True)
+button = window.Button2 # save button
+button.ClickInput()
+sleep(1)
+window = app.Dialog
+edit = window.Edit.SetText(time.time()) 
+button3 = window.Button
+button3.ClickInput()
+sleep(1)
+window = app.Dialog
+edit = window.Edit.SetText("")
+window.Button.ClickInput()
+sleep(1)
+app.Dialog.Edit.TypeKeys("allow.lsu")
+app.Dialog.Open.ClickInput()
+sleep(1)
+
+app.Dialog.RadioButton3.ClickInput()
+app.Dialog.Edit2.SetText("")
+app.Dialog.Edit2.TypeKeys("google.com\nbaidu.com", with_newlines=True)
+app.Dialog.Button4.ClickInput() # Save button
+sleep(1)
+app.Dialog.Edit2.SetText(time.time()) 
+app.Dialog.button3.ClickInput()
+sleep(1)
+window = app.Dialog
+app.Dialog.Edit2.SetText("")
+window.Button3.ClickInput()
+sleep(1)
+app.Dialog.Edit2.TypeKeys("block.lsu")
+app.Dialog.Open.ClickInput()
+sleep(1)
+app.Dialog.RadioButton2.ClickInput()
+sleep(1)
+app.Dialog.OK.ClickInput()
+
 print("pass!\n")
 
 # Toolbar - Limit Apps
@@ -290,8 +394,15 @@ app.Open.Cancel.ClickInput()
 sleep(1)
 app.Dialog.Cancel.ClickInput()
 sleep(1)
-lskmainteacherwindowclass.ClickInput(coords=(160,335))
+lskmainteacherwindowclass.ClickInput(coords=(160,335)) # reset
 print("pass!\n")
 
-print("all function in toolbar has been test\n")
+# Test - Doc
+menu_item = lskmainteacherwindowclass.MenuItem(u'&Help->About LanSchool')
+menu_item.ClickInput()
+sleep(1)
+app.Dialog.Close.ClickInput()
+sleep(1)
+
+# print("all function in toolbar has been test\n")
 #_________________________________________________
