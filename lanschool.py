@@ -14,11 +14,9 @@ from time import sleep
 app = Application().connect(title='LanSchool Teacher Console')
 lskmainteacherwindowclass = app[u'LanSchool Teacher Console']
 
-# lskmainteacherwindowclass.Restore()
-# lskmainteacherwindowclass.SetFocus()
-# lskmainteacherwindowclass.Maximize()
+lskmainteacherwindowclass.Maximize()
 
-# ______________________________________________________________________
+# =====================================================
 
 toolbarwindow = lskmainteacherwindowclass['ToolBar']
 
@@ -73,7 +71,6 @@ window2.ReleaseMouseInput(coords=(1280, 800))
 sleep(0.1)
 
 app.DrawOnScreen.Button.ClickInput()
-
 sleep(2)
 app.Dialog.Stop.ClickInput()
 sleep(1)
@@ -119,7 +116,6 @@ sleep(1)
 app.Dialog.Close() # not finish yet
 sleep(1)
 app.Dialog.Close()
-
 print("pass!\n")
 
 # Toolbar - Test Create
@@ -177,30 +173,11 @@ app.Dialog.CheckBox2.ClickInput()
 app.Dialog.CheckBox3.ClickInput()
 sleep(1)
 app.Dialog.Save.ClickInput()
-
 testbuilder.Close()
 sleep(1)
+
 lskmainteacherwindowclass.ClickInput(coords=(160,335)) # select first client
-
-print(findwindows.find_windows(best_match="PopupMenu"))
-sleep(1)
-app.PopupMenu.MenuItem("Ask Students to Take Test...").ClickInput()
-
-sleep(1)
-print(app.Dialog.Texts())
-app.Dialog.Load.ClickInput()
-sleep(1)
-app.Dialog.Edit.TypeKeys("Computers.lst", with_spaces = True)
-sleep(1)
-print(app.Dialog.Texts())
-app.Dialog.Open.ClickInput()
-sleep(1)
-app.Dialog.Start.ClickInput()
-sleep(1)
-app.Dialog.Sotp.ClickInput()
-sleep(1)
-app.Dialog.ClickInput(coords=(1313, -20)) # no idea how to click that button in other way
-sleep(1)
+app = Application().connect(title='LanSchool Teacher Console')
 
 print("pass!\n")
 
@@ -273,11 +250,11 @@ print("pass!\n")
 
 # Toolbar - Limit Web
 print("Limit Web - Save/Load Allowed List")
-
 menu_item = lskmainteacherwindowclass.MenuItem(u'&Restrict->Configure Web Limiting...')
 menu_item.ClickInput()
 sleep(1)
 
+# allow list
 window = app.Dialog
 edit = window.Edit.SetText("")
 edit = window.Edit.TypeKeys("google.com\nbaidu.com", with_newlines=True)
@@ -297,6 +274,7 @@ app.Dialog.Edit.TypeKeys("allow.lsu")
 app.Dialog.Open.ClickInput()
 sleep(1)
 
+# block list
 app.Dialog.RadioButton3.ClickInput()
 app.Dialog.Edit2.SetText("")
 app.Dialog.Edit2.TypeKeys("google.com\nbaidu.com", with_newlines=True)
@@ -374,8 +352,6 @@ print("pass!\n")
 print("class list..")
 toolbar_button = toolbarwindow.Button(27)
 toolbar_button.ClickInput()
-# app.PopupMenu.test.Click
-# print(findwindows.find_windows(best_match="PopupMenu"))
 sleep(1)
 app.PopupMenu.MenuItem("Manage Class Lists...").ClickInput()
 sleep(2)
@@ -401,8 +377,9 @@ print("pass!\n")
 menu_item = lskmainteacherwindowclass.MenuItem(u'&Help->About LanSchool')
 menu_item.ClickInput()
 sleep(1)
-app.Dialog.Close.ClickInput()
+app.Dialog.Close()
 sleep(1)
 
-# print("all function in toolbar has been test\n")
-#_________________________________________________
+print("all function above has been test\n")
+
+# ===============================================
