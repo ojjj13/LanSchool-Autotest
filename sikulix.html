@@ -1,0 +1,176 @@
+
+<html>
+   <head>
+      <style type="text/css">
+         .sikuli-code {
+            font-size: 20px;
+            font-family: "Osaka-mono", Monospace;
+            line-height: 1.5em;
+            display:table-cell;
+            white-space: pre-wrap;       /* css-3 */
+            white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
+            width: 99%;   /* remove horizontal scroll-bar when viewing in IE7 */
+         }
+         .sikuli-code img {
+            vertical-align: middle;
+            margin: 2px;
+            border: 1px solid #ccc;
+            padding: 2px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-box-shadow: 1px 1px 1px gray;
+            -webkit-box-shadow: 1px 1px 2px gray;
+         }
+         .kw {
+            color: blue;
+         }
+         .skw {
+            color: rgb(63, 127, 127);
+         }
+
+         .str {
+            color: rgb(128, 0, 0);
+         }
+
+         .dig {
+            color: rgb(128, 64, 0);
+         }
+
+         .cmt {
+            color: rgb(200, 0, 200);
+         }
+
+         h2 {
+            display: inline;
+            font-weight: normal;
+         }
+
+         .info {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            display: none;
+         }
+
+         a {
+            color: #9D2900;
+         }
+
+         body {
+            font-family: "Trebuchet MS", Arial, Sans-Serif;
+         }
+
+      </style>
+   </head>
+<body>
+<div class="info">
+<h2>sikulix.sikuli</h2> <a href="sikulix.zip">(Download this script)</a>
+</div>
+<pre class="sikuli-code">
+<span class="cmt"># java 8 build #201, sikulixide 1.1.3</span>
+<span class="cmt"># wait screenshot type delete_text loop doc </span>
+<span class="kw">def</span> Show():
+    <span class="skw">click</span>(<img src="1548124804699.png" />)
+    <span class="skw">wait</span>(<img src="1548124826026.png" />)
+    <span class="skw">click</span>(<img src="1548124826026.png" />)
+    <span class="skw">click</span>(<img src="1548124826026.png" />)
+    <span class="skw">click</span>(<img src="1548124954309.png" />)
+
+
+<span class="kw">def</span> Show_Student():
+    <span class="skw">click</span>(<img src="1548136490068.png" />)
+    <span class="skw">click</span>(<img src="1548126358165.png" />)
+
+    <span class="skw">wait</span>(<img src="1548126418191.png" />)
+    <span class="skw">click</span>(<img src="1548126418191.png" />)
+    <span class="skw">click</span>(<img src="1548136547539.png" />)
+
+<span class="kw">def</span> vote():
+    <span class="skw">wait</span>(<img src="1548126464907.png" />)
+    <span class="skw">click</span>(<img src="1548126464907.png" />)
+
+    <span class="skw">wait</span>(<img src="1548126919465.png" />)
+    <span class="skw">type</span>(<span class="str">"Random Question"</span>)
+    <span class="skw">click</span>(<img src="1548127070370.png" />)
+    <span class="skw">wait</span>(<img src="1548127112741.png" />)
+
+    <span class="skw">type</span>(<span class="str">"votetest"</span>)
+    <span class="skw">click</span>(<img src="1548127253087.png" />)
+    <span class="skw">wait</span>(<img src="1548127380376.png" />)
+    <span class="skw">click</span>(<img src="1548127380376.png" />)
+    <span class="skw">sleep</span>(<span class="dig">1</span>)
+    <span class="skw">click</span>(<img src="1548137634213.png" />)
+    <span class="skw">type</span>(Key.HOME,Key.SHIFT)
+    <span class="skw">sleep</span>(<span class="dig">1</span>)
+    <span class="skw">type</span>(Key.DELETE)
+    <span class="skw">wait</span>(<img src="1548138108882.png" />)
+    <span class="skw">click</span>(<img src="1548138108882.png" />)
+    <span class="skw">wait</span>(<img src="1548138135136.png" />)
+    <span class="skw">type</span>(<span class="str">"votetest.lsq"</span>)
+    <span class="skw">click</span>(<img src="1548138189195.png" />)
+    <span class="skw">wait</span>(<img src="1548138232941.png" />)
+    <span class="skw">click</span>(<img src="1548138232941.png" />)
+    <span class="skw">sleep</span>(<span class="dig">1</span>)
+    <span class="skw">click</span>(<img src="1548138270031.png" />)
+
+<span class="kw">def</span> Test_Create():
+    <span class="skw">click</span>(<img src="1548142167556.png" />)
+    <span class="skw">wait</span>(<img src="1548142190232.png" />)
+    <span class="skw">click</span>(<img src="1548142190232.png" />)
+    <span class="skw">wait</span>(<img src="1548142253228.png" />)
+    <span class="skw">click</span>(<img src="1548142253228.png" />)
+    <span class="skw">wait</span>(<img src="1548142298252.png" />)
+    <span class="skw">type</span>(<img src="1548142298252.png" />, <span class="str">"what is 1 + 1 ?"</span>)
+    <span class="skw">click</span>(<img src="1548142346926.png" />)
+    <span class="skw">click</span>(<img src="1548142367394.png" />)
+    <span class="skw">type</span>(<img src="1548142439168.png" />,<span class="str">"2"</span>)
+    <span class="skw">click</span>(<img src="1548142567160.png" />)
+    <span class="skw">wait</span>(<img src="1548142636040.png" />)
+    <span class="skw">click</span>(<img src="1548142636040.png" />)
+    <span class="skw">wait</span>(<img src="1548142655939.png" />)
+    <span class="skw">click</span>(<img src="1548142655939.png" />)
+    <span class="skw">wait</span>(<img src="1548142692356.png" />)
+    <span class="skw">click</span>(<img src="1548142692356.png" />)
+    <span class="skw">wait</span>(<img src="1548142710718.png" />)
+    <span class="skw">click</span>(<img src="1548142710718.png" />)
+    <span class="skw">click</span>(<img src="1548136547539.png" />)
+
+<span class="kw">def</span> Control():
+    <span class="skw">click</span>(<img src="1548136490068.png" />)
+    <span class="skw">click</span>(<img src="1548142970069.png" />)
+    <span class="skw">wait</span>(<img src="1548142995299.png" />)
+    <span class="skw">rightClick</span>(<img src="1548142995299.png" />)
+    <span class="skw">wait</span>(<img src="1548143020899.png" />)
+    <span class="skw">click</span>(<img src="1548143020899.png" />)
+    <span class="skw">sleep</span>(<span class="dig">1</span>)
+    <span class="skw">click</span>(<img src="1548143081579.png" />)
+    <span class="skw">click</span>(<img src="1548136547539.png" />)
+
+<span class="kw">def</span> SnapShot():
+    <span class="skw">click</span>(<img src="1548136490068.png" />)
+    <span class="skw">click</span>(<img src="1548143189118.png" />)
+    <span class="skw">wait</span>(<img src="1548143224785.png" />)
+    <span class="skw">click</span>(<img src="1548143224785.png" />)
+    <span class="skw">click</span>(<img src="1548136547539.png" />)
+
+<span class="kw">def</span> Message():
+    <span class="skw">click</span>(<img src="1548143457560.png" />)
+    <span class="skw">wait</span>(<img src="1548143477701.png" />)
+    <span class="skw">type</span>(<span class="str">"pay attention!"</span>)
+    <span class="skw">click</span>(<img src="1548143512118.png" />)
+    <span class="skw">click</span>(<img src="1548143523840.png" />)
+    <span class="skw">click</span>(<img src="1548143536563.png" />)
+
+Show()
+Show_Student()
+vote()
+Test_Create()
+Control()
+SnapShot()
+Message()
+</pre>
+</body>
+</html>
